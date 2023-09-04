@@ -1,3 +1,88 @@
 body {
-  background-color: rgba(130, 91, 169, 0.921);
+  background-color: #D4F1F4;
+}
+.navbar{
+  background-color: #189AB4;
+}
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+}
+.box{
+  position: relative;
+  width: 380px;
+  background-color: #75E6DA;
+  padding: 25px;
+  border-radius: 10px;
+}
+.box .inputBox {
+  position: relative;
+  width: 100%;
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px;
+}
+.box .inputBox input {
+  position: relative;
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 10px 5px;
+}
+.box .inputBox #toggleBtn {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  background: rgba(0,0,0,0.05);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.box .inputBox #toggleBtn::before{
+  content: '\f06e';
+  font-family: fontAwesome;
+}
+.box .inputBox #toggleBtn.hide::before{
+  content: '\f070';
+}
+.validation{
+  background-color: rgba(134, 46, 111, 0.469);
+  padding: 10px;
+  margin-top: 30px;
+  border-radius: 8px;
+  box-shadow: 0 5px 10px;
+}
+.validation ul {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.validation ul li {
+  position: relative;
+  list-style: none;
+  font-size: 0.90em;
+  transition: 0.5s;
+}
+.validation ul li.valid{
+  color: #0f0;
+}
+.validation ul li::before{
+  content:'\f192';
+  color: #fff;
+  width: 20px;
+  height: 10px;
+  font-family: fontAwesome;
+  display: inline-flex;
+}
+.validation ul li.valid::before{
+  content: '\f00c';
+  color: #0f0;
 }
