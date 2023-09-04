@@ -10,6 +10,7 @@ const Registrer= () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isPasswordValid, setIsPasswordValid] = useState(false);
+    const [error, setError] = useState(null);
     const [, setUserState] = useAtom(userAtom)
 
     const navigate = useNavigate();
@@ -124,11 +125,12 @@ const Registrer= () => {
           setEmail('');
           setPassword('');
         } else {
-          console.error('Échec de l\'inscription email déjà utilisé');
+          console.error('L\'adresse e-mail que vous avez fournie est déjà associée à un compte. Veuillez vous connecter ou utiliser une autre adresse e-mail.');
+          setError('L\'adresse e-mail que vous avez fournie est déjà associée à un compte. Veuillez vous connecter ou utiliser une autre adresse e-mail.');
         }
       } catch (error) {
-        console.log('catch');
         console.error('Erreur lors de la requête:', error);
+        setError('Erreur de connexion au serveur. Veuillez vérifier votre connexion Internet.');
       }
     };
 
@@ -137,10 +139,18 @@ const Registrer= () => {
         <div className='box py-4 mt-5'>
             <h2>Inscription</h2>
             <form onSubmit={handleSubmit}>
+            {error && (
+                <div className="alert alert-danger" role="alert">
+                  {error}
+                </div>
+              )}
             <label htmlFor="username">Nom d'utilisateur :</label>
                 <div className='inputBox mb-3'>
                     <input
-                        type="username"
+                        type="text"
+                        minLength={3}
+                        maxLength={25}
+                        aria-describedby="champs username"
                         id="username"
                         placeholder='Username'
                         value={username}
@@ -152,6 +162,9 @@ const Registrer= () => {
                 <div className='inputBox mb-3'>
                     <input
                         type="email"
+                        minLength={3}
+                        maxLength={30}
+                        aria-describedby="champs email"
                         id="email"
                         placeholder='Email'
                         value={email}
@@ -163,6 +176,9 @@ const Registrer= () => {
                 <div className='inputBox mb-3'>
                     <input
                         type="password"
+                        minLength={8}
+                        maxLength={50}
+                        aria-describedby="champs password"
                         id="password"
                         placeholder='Mot de passe'
                         value={password}
@@ -180,7 +196,7 @@ const Registrer= () => {
                     <li id='length'>8 caractére minimum</li>
                   </ul>
                 </div>
-                <button type="submit" disabled={!isPasswordValid} className='btn btn-primary mt-3'>S'inscrire</button>
+                <button type="submit" aria-label="S'inscrire" disabled={!isPasswordValid} className='btn btn-primary mt-3'>S'inscrire</button>
             </form>
         </div>
     );
