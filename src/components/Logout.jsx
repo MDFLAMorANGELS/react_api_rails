@@ -12,6 +12,6 @@ export default function logout() {
   
   
     return (
-    <button onClick={handleLogout}>Se Déconnecter</button>
+    <button className='btn btn-danger' onClick={handleLogout}>Se Déconnecter</button>
   )
 }

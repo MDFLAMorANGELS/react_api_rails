@@ -9,6 +9,7 @@ const Registrer= () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [isPasswordValid, setIsPasswordValid] = useState(false);
     const [, setUserState] = useAtom(userAtom)
 
     const navigate = useNavigate();
@@ -36,8 +37,14 @@ const Registrer= () => {
       const lower = new RegExp('(?=.*[a-z])');
       const upper = new RegExp('(?=.*[A-Z])');
       const number = new RegExp('(?=.*[0-9])');
-    const special = new RegExp('(?=.*[@#$%^&+=_-])');
+      const special = new RegExp('(?=.*[@#$%^&+=_-])');
       const length = new RegExp('(?=.{8,})');
+
+      const isLowerValid = lower.test(data);
+      const isUpperValid = upper.test(data);
+      const isNumberValid = number.test(data);
+      const isSpecialValid = special.test(data);
+      const isLengthValid = length.test(data);
 
       if (lower.test(data)) {
         lowerCase.classList.add('valid');
@@ -68,6 +75,8 @@ const Registrer= () => {
       } else {
         minLength.classList.remove('valid');
       }
+
+      setIsPasswordValid(isLowerValid && isUpperValid && isNumberValid && isSpecialValid && isLengthValid);
 
     }
 
@@ -171,7 +180,7 @@ const Registrer= () => {
                     <li id='length'>8 caractére minimum</li>
                   </ul>
                 </div>
-                <button type="submit" className='btn btn-primary mt-3'>S'inscrire</button>
+                <button type="submit" disabled={!isPasswordValid} className='btn btn-primary mt-3'>S'inscrire</button>
             </form>
         </div>
     );
