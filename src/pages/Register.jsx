@@ -163,7 +163,7 @@ const Registrer= () => {
                     <span id='toggleBtn' onClick={handlePasswordHide}></span>
                 </div>
                 <div className='validation'>
-                  <ul>
+                  <ul className='validation_list'>
                     <li id='lower'>Besoin d'une minuscule</li>
                     <li id='upper'>Besoin d'une majuscule</li>
                     <li id='number'>Besoin d'un chiffres</li>
